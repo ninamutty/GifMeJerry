@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="V4d-nO-2gd" customClass="GifCollectionViewCell" customModule="GifMeJerry" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="341" height="264"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="341" height="264"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ez5-4V-X0E">
+                        <rect key="frame" x="0.0" y="0.0" width="341" height="264"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Ez5-4V-X0E" firstAttribute="top" secondItem="V4d-nO-2gd" secondAttribute="top" id="ZhF-jt-Kwr"/>
+                <constraint firstItem="Ez5-4V-X0E" firstAttribute="leading" secondItem="V4d-nO-2gd" secondAttribute="leading" id="b1c-mi-nLt"/>
+                <constraint firstAttribute="trailing" secondItem="Ez5-4V-X0E" secondAttribute="trailing" id="ceX-Xr-BBF"/>
+                <constraint firstAttribute="bottom" secondItem="Ez5-4V-X0E" secondAttribute="bottom" id="nl3-kP-gU0"/>
+            </constraints>
+            <size key="customSize" width="341" height="264"/>
+            <connections>
+                <outlet property="gifImage" destination="Ez5-4V-X0E" id="115-KZ-b14"/>
+            </connections>
+            <point key="canvasLocation" x="304.5" y="-82"/>
+        </collectionViewCell>
+    </objects>
+</document>
