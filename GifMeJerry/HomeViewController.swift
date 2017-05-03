@@ -33,14 +33,34 @@ class HomeViewController: UIViewController {
     let apiConsumer = APIConsumer()
     fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     fileprivate let itemsPerRow: CGFloat = 2
+    var searchTerm = ""
     
     //Mark: IBOutlets
+    @IBOutlet weak var searchTextField: UITextField!
+    
+    @IBOutlet weak var searchResultsHeader: UILabel! {
+        didSet {
+            searchResultsHeader.text = "All Seinfeld Gifs"
+        }
+    }
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
-            let nibName = UINib(nibName: Constant.gifCellNibName, bundle:nil)
+            let nibName = UINib(nibName: Constant.gifCellNibName, bundle: Bundle(for: GifCollectionViewCell.self))
             collectionView.register(nibName, forCellWithReuseIdentifier: Constant.gifCellReuseIdentifier)
         }
     }
+    
+    @IBAction func search(_ sender: UIButton) {
+        guard let searchTerm = searchTextField.text, !(searchTextField.text?.isEmpty)! else {
+            return
+        }
+        searchTextField.text = nil
+        apiConsumer.searchGifs(searchTerm: searchTerm, completion: { gifs in
+            self.setGifList(gifs)
+            self.searchResultsHeader.text = "Seinfeld and \(searchTerm) Gifs"
+        })
+    }
+    
     
     
     //Mark: Lifecycle Events
@@ -95,16 +115,13 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constant.gifCellReuseIdentifier, for: indexPath) as! GifCollectionViewCell
-//        guard let gifCollectionViewCell: GifCollectionViewCell = collectionViewCell as? GifCollectionViewCell else {
-//            fatalError("GifCollectionViewCell can't be created.")
-//        }
+
         cell.backgroundColor = UIColor.black
         let gifURLString = gifList[indexPath.row].url
         let gifImage = UIImage.gif(url: gifURLString)!
+//        let image = #imageLiteral(resourceName: "tiger-mom-cub")
         
-        cell.gifImage = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y:0), size: CGSize(width: 30.0, height: 30.0)))
-        let image = UIImageView(image:#imageLiteral(resourceName: "tiger-mom-cub"))
-        cell.gifImage = image
+        cell.configure(image: gifImage)
         
         return cell
     }

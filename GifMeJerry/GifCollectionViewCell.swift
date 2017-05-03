@@ -1,9 +1,10 @@
 import UIKit
 
 class GifCollectionViewCell: UICollectionViewCell {
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//    }
+    @IBOutlet weak var gifImage: UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -12,8 +13,10 @@ class GifCollectionViewCell: UICollectionViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-//        fatalError("init(coder:) has not been implemented")
     }
-
-    @IBOutlet weak var gifImage: UIImageView!
+    
+    func configure(image: UIImage) {
+        self.gifImage.image = image
+    }
+    
 }
